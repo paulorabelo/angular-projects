@@ -12,7 +12,7 @@ public class StockDTO {
     private Long id;
 
     @NotNull
-    private String nome;
+    private String name;
 
     @NotNull
     @DecimalMin(value = "0.00")
@@ -35,12 +35,12 @@ public class StockDTO {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String nome) {
+        this.name = nome;
     }
 
     public Double getPrice() {

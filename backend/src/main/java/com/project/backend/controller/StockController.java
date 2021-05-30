@@ -1,6 +1,8 @@
 package com.project.backend.controller;
 
 import com.project.backend.model.dto.StockDTO;
+import com.project.backend.service.StockService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +16,14 @@ import java.util.List;
 @RequestMapping(value = "/stock")
 public class StockController {
 
+    @Autowired
+    private StockService service;
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StockDTO> save(@Valid @RequestBody StockDTO dto){
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(service.save(dto));
     }
+
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StockDTO> update(@Valid @RequestBody StockDTO dto){
         return ResponseEntity.ok(dto);
@@ -28,7 +34,7 @@ public class StockController {
         List<StockDTO> list = new ArrayList<>();
         StockDTO dto = new StockDTO();
         dto.setId(1L);
-        dto.setNome("Magazine Luiza");
+        dto.setName("Magazine Luiza");
         dto.setPrice(100D);
         dto.setVariation(10D);
         dto.setDate(LocalDate.now());
@@ -41,13 +47,13 @@ public class StockController {
         List<StockDTO> list = new ArrayList<>();
         StockDTO stock1 = new StockDTO();
         stock1.setId(1L);
-        stock1.setNome("Magazine Luiza");
+        stock1.setName("Magazine Luiza");
         stock1.setPrice(100D);
         stock1.setVariation(10D);
         stock1.setDate(LocalDate.now());
         StockDTO stock2 = new StockDTO();
         stock2.setId(2L);
-        stock2.setNome("Ponto Frio");
+        stock2.setName("Ponto Frio");
         stock2.setPrice(100D);
         stock2.setVariation(5D);
         stock2.setDate(LocalDate.now());
